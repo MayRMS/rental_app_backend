@@ -8,7 +8,7 @@ const { isAdmin } = require('../middleware/isAdmin')
 router.get('/', getJWT , isAdmin, async (req, res) => {
     try {
         const users = await controller.getAllUsers()
-        res.status(200).json({users})
+        res.status(200).json({ users })
     } catch (err) {
         manageError(err, res)
     }
