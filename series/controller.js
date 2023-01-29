@@ -19,10 +19,10 @@ exports.getSerieById = async (id) => {
 
 exports.getSerieByName = async (name) => {
     const url = serieURL.byName(name)
-    const series = (await makeAxiosRequest(url))
-    const serie = series.data.results.find(e => e.name.toLowerCase() === name.toLowerCase())
-    if (!serie) throw customError('serie not found', 404)
-    return serie
+    const series = await makeAxiosRequest(url)
+    //const serie = series.data.results.find(e => e.name.toLowerCase() === name.toLowerCase())
+    //const serie=await series.data.results.find({"name":{ "$regex": url, "$options": "i" }})
+    return series.data
 }
 
 exports.getNextSevenDays = async () => {

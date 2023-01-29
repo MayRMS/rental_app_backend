@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { customError } = require('./errors')
 
 const makeAxiosRequest = async (url) => {
     try {
@@ -11,5 +12,5 @@ const makeAxiosRequest = async (url) => {
 }
 
 module.exports = {
-    makeAxiosRequest: makeAxiosRequest
+    makeAxiosRequest
 }

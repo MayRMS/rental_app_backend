@@ -25,6 +25,7 @@ router.get('/:id', getJWT, isAdmin, async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body
+    console.log({email, password})
     if (!email || !password) res.status(400).json({ message: 'bad request'})
     try {
         const token = await controller.login(email, password)
@@ -37,11 +38,13 @@ router.post("/login", async (req, res) => {
 router.post("/signup", async (req, res) => {
     const user = req.body
     if (!user.name || !user.email || !user.password || !user.age) {
-        res.status(400).json({ message: 'bad request'})
+        console.log(req.body)
+        return res.status(400).json({ message: 'bad request'})
     }
     try {
         const token = await controller.signUp(user)
-        res.status(200).json({ token })
+        console.log({token})
+        return res.status(200).send({token})
     } catch (err) {
         manageError(err, res)
     }

@@ -3,7 +3,7 @@ const controller = require('./controller.js');
 const { getJWT } = require('../middleware/auth.js');
 const { manageError } = require('../common/errors.js');
 
-router.get('/toprated', getJWT, async (req, res) => {
+router.get('/toprated', async (req, res) => {
     try {
         const series = await controller.getTopRated()
         res.status(200).json({ series })
@@ -26,7 +26,7 @@ router.get('/name/:name', getJWT, async (req, res) => {
     const { name } = req.params
     try {
         const serie = await controller.getSerieByName(name)
-        res.status(200).json({ serie })
+        return res.status(200).json({ serie })
     } catch (err) {
         manageError(err, res)
     }

@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 require('dotenv').config()
 
 const dbconnect = require('./mongo/connection.js')
@@ -10,6 +11,7 @@ const port = process.env.PORT
 
 app.use(morgan('combined'))
 app.use(express.json())
+app.use(cors())
 app.use(routes)
 dbconnect()
 

@@ -16,6 +16,7 @@ exports.getUserById = async (id) => {
 }
 
 exports.login = async (email, password) => {
+    console.log({email, password})
     const user = (await User.find({ email }))[0]
     if (!user) throw customError('user not found', 404)
     if (!bcrypt.compareSync(password, user.password)) throw customError('user not found', 404)
